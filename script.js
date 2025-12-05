@@ -1,15 +1,12 @@
-// MonaLIGHT – ChatKit Client
-
 const apiKeyInput = document.getElementById("apiKey");
 const startBtn = document.getElementById("startBtn");
 const statusEl = document.getElementById("status");
 const chatStateEl = document.getElementById("chatState");
 const chatEl = document.getElementById("chat");
 
-// URL tvého Workeru
+// URL na /session ve Workeru
 const WORKER_URL = "https://lucky-violet-3dad.jan-kubat.workers.dev/session";
 
-// UI helpers
 function setStatus(msg, type = "") {
   statusEl.textContent = msg;
   statusEl.className = "status " + type;
@@ -24,7 +21,6 @@ function disableUI(disabled) {
   apiKeyInput.disabled = disabled;
 }
 
-// Create ChatKit session
 async function createSession(apiKey) {
   const res = await fetch(WORKER_URL, {
     method: "POST",
@@ -32,7 +28,7 @@ async function createSession(apiKey) {
     body: JSON.stringify({ apiKey }),
   });
 
-  if (!res.ok) throw new Error("Worker session error: " + res.status);
+  if (!res.ok) throw new Error(await res.text());
   return res.json(); // { clientSecret }
 }
 
@@ -50,6 +46,10 @@ startBtn.addEventListener("click", async () => {
 
   try {
     const { clientSecret } = await createSession(apiKey);
+    if (!clientSecret) {
+      throw new Error("Worker nevrátil clientSecret");
+    }
+
     chatEl.clientSecret = clientSecret;
 
     setStatus("Připojeno ✔️", "ok");
