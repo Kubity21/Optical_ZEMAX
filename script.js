@@ -1,10 +1,11 @@
+// MonaLIGHT – ChatKit Client
+
 const apiKeyInput = document.getElementById("apiKey");
 const startBtn = document.getElementById("startBtn");
 const statusEl = document.getElementById("status");
 const chatStateEl = document.getElementById("chatState");
 const chatEl = document.getElementById("chat");
 
-// URL na /session ve Workeru
 const WORKER_URL = "https://lucky-violet-3dad.jan-kubat.workers.dev/session";
 
 function setStatus(msg, type = "") {
