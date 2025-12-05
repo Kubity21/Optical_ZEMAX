@@ -2,7 +2,7 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8" />
-  <title>MonaLIGHT Agent – ChatKit Client</title>
+  <title>MonaLIGHT – Chat Client</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="preconnect" href="https://cdn.platform.openai.com" />
 
@@ -38,7 +38,7 @@
       }
     }
 
-    /* Sidebar */
+    /* SIDEBAR */
     .sidebar {
       padding: 28px;
       border-right: 1px solid #334155;
@@ -80,6 +80,12 @@
       font-size: 14px;
     }
 
+    input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 1px #3b82f6;
+    }
+
     button {
       margin-top: 24px;
       width: 100%;
@@ -114,7 +120,7 @@
       line-height: 1.4;
     }
 
-    /* Chat panel */
+    /* CHAT PANEL */
     .chat-panel {
       background: #0f172a;
       display: flex;
@@ -160,7 +166,7 @@
 
       <div class="hint">
         • Pokud je Worker nastaven s <code>OPENAI_API_KEY</code>, nemusíš nic vyplňovat.<br />
-        • Klíč se nikdy neukládá – posílá se jen jednorázově pro vytvoření session.
+        • Klíč se nikdy neukládá – pošle se jen jednorázově pro vytvoření session.
       </div>
     </aside>
 
@@ -171,18 +177,15 @@
       </div>
 
       <div id="chat-wrapper">
-        <openai-chatkit
-          id="chat"
-          files-enabled="true"
-          file-upload-endpoint="https://lucky-violet-3dad.jan-kubat.workers.dev/upload"
-          max-file-size="25MB"
-          accepted-file-types="image/*,application/pdf,text/plain"
-        ></openai-chatkit>
+        <openai-chatkit id="chat"></openai-chatkit>
       </div>
     </section>
   </div>
 
+  <!-- ChatKit hosted UI -->
   <script src="https://cdn.platform.openai.com/deployments/chatkit/chatkit.js" defer></script>
+
+  <!-- Client logic -->
   <script type="module" src="script.js"></script>
 </body>
 </html>
