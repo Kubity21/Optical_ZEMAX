@@ -1,5 +1,5 @@
 // ----------------------------------------
-// MonaLIGHT – ChatKit Client
+// Optical and ZEMAX – ChatKit Client
 // ----------------------------------------
 
 const apiKeyInput = document.getElementById("apiKey");
